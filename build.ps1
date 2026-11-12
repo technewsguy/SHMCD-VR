@@ -20,6 +20,12 @@ $src += Join-Path $root "deps\openvr\openvr_api.cs"   # Valve's C# bindings (v1.
 & $csc /nologo /noconfig /nostdlib+ /target:library /optimize+ /debug- /warn:4 "/out:$out\SHMCDVR.dll" ($refs | ForEach-Object { "/r:$_" }) $src
 if ($LASTEXITCODE -ne 0) { throw "Build failed" }
 Write-Host "Built $out\SHMCDVR.dll"
+# Steam / SteamVR VR-entry launcher (x64, AnyCPU) and the shortcuts.vdf tool
+& $csc /nologo /target:winexe /optimize+ "/out:$out\shmcdvr-launch.exe" (Join-Path $root "launcher\ShmcdVrLaunch.cs") (Join-Path $root "deps\openvr\openvr_api.cs")
+if ($LASTEXITCODE -ne 0) { throw "Launcher build failed" }
+& $csc /nologo /optimize+ "/out:$out\SteamShortcut.exe" (Join-Path $root "launcher\SteamShortcut.cs")
+if ($LASTEXITCODE -ne 0) { throw "SteamShortcut build failed" }
+Copy-Item (Join-Path $root "_tools\vrprobe\openvr_api.dll") (Join-Path $out "openvr_api.dll") -Force   # x64, for the launcher
 if ($Install) {
     $p = Join-Path $GameDir "BepInEx\plugins"; New-Item -ItemType Directory -Force $p | Out-Null
     Copy-Item "$out\SHMCDVR.dll" $p -Force

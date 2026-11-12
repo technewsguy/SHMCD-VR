@@ -37,6 +37,10 @@ are untested.
    - Originals are kept as `*.orig`.
 3. Start SteamVR, then start the game.
 
+**Optional - a separate "SUPERHOT: MIND CONTROL DELETE VR" entry in Steam and SteamVR** (with the game's artwork,
+"Include in VR Library" on, plus desktop / Start menu shortcuts). It closes and restarts Steam:
+`powershell -ExecutionPolicy Bypass -File steam-entry\add-steam-vr-shortcut.ps1 -GameDir "<game folder>" -BuildDir steam-entry`
+
 **Uninstall:** run `uninstall.cmd`, or verify the game files in Steam. Back up your game folder first if you want
 to be extra careful; the installer only changes the files listed above.
 
