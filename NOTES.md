@@ -322,3 +322,14 @@ Known issues:
   `-Uninstall` restores. Tested on a fake game dir: patched ggm byte-identical to the working one; uninstall restores.
 - Never commit `_decomp` (game code) or BepInEx zips (.gitignore). Commits use the GitHub no-reply email.
 
+
+## Steam / SteamVR library entry (2026-11-12)
+- `launcher\ShmcdVrLaunch.cs` (adapted from NSLT-VR): starts SteamVR if needed, registers + LaunchApplication(
+  'shmcdvr.mod.game') whose manifest runs the launcher with --noop (closes the SteamVR dashboard), then starts SHMCD.exe
+  with SteamAppId=690040 and waits. Desktop shortcut hands over to the Steam entry (steam_gameid.txt).
+- `launcher\add-steam-vr-shortcut.ps1 -GameDir`: installs GameDir\SHMCDVR-launcher (x64 openvr_api.dll), writes
+  shmcdvr.vrmanifest with header/capsule art, desktop + Start menu .lnk, closes Steam, adds the non-Steam game
+  'SUPERHOT: MIND CONTROL DELETE VR' (OpenVR flag) via SteamShortcut.exe and copies librarycache\690040 art to grid\.
+- Done for the user's account 2026-11-12: shortcut id 3649134931, pointing at the test copy T:\SHMCD-VR\game.
+  shortcuts.vdf backup: shortcuts.vdf.shmcdvr-backup.
+
