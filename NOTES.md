@@ -314,3 +314,11 @@ Known issues:
 
 ## Next
 - Headset test + tune Time settings; world-space UI/HUD; launcher (dashboard); hands (tier 3).
+
+## Release (2026-11-12)
+- Public repo https://github.com/technewsguy/SHMCD-VR (MIT), pre-release v0.1.0 with `dist\SHMCD-VR-v0.1.0.zip`
+  (`package.ps1`). Installer `install\install.ps1`: finds the game via Steam libraryfolders.vdf, downloads BepInEx
+  5.4.23.6 x86, copies `files\`, sets vr-enabled=1, patches globalgamemanagers with UnityPy 1.25.4 (keeps .orig);
+  `-Uninstall` restores. Tested on a fake game dir: patched ggm byte-identical to the working one; uninstall restores.
+- Never commit `_decomp` (game code) or BepInEx zips (.gitignore). Commits use the GitHub no-reply email.
+
