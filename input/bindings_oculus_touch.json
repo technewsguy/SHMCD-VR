@@ -1,0 +1,121 @@
+{
+  "controller_type": "oculus_touch",
+  "description": "SHMCD-VR default (Touch)",
+  "name": "SHMCD-VR default",
+  "bindings": {
+    "/actions/shmcd": {
+      "sources": [
+        {
+          "path": "/user/hand/left/input/joystick",
+          "mode": "joystick",
+          "inputs": {
+            "position": {
+              "output": "/actions/shmcd/in/stick_l"
+            },
+            "click": {
+              "output": "/actions/shmcd/in/stickclick_l"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/trigger",
+          "mode": "trigger",
+          "inputs": {
+            "pull": {
+              "output": "/actions/shmcd/in/trigger_l"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/grip",
+          "mode": "trigger",
+          "inputs": {
+            "click": {
+              "output": "/actions/shmcd/in/grip_l"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/joystick",
+          "mode": "joystick",
+          "inputs": {
+            "position": {
+              "output": "/actions/shmcd/in/stick_r"
+            },
+            "click": {
+              "output": "/actions/shmcd/in/stickclick_r"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/trigger",
+          "mode": "trigger",
+          "inputs": {
+            "pull": {
+              "output": "/actions/shmcd/in/trigger_r"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/grip",
+          "mode": "trigger",
+          "inputs": {
+            "click": {
+              "output": "/actions/shmcd/in/grip_r"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/x",
+          "mode": "button",
+          "inputs": {
+            "click": {
+              "output": "/actions/shmcd/in/a_l"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/y",
+          "mode": "button",
+          "inputs": {
+            "click": {
+              "output": "/actions/shmcd/in/b_l"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/a",
+          "mode": "button",
+          "inputs": {
+            "click": {
+              "output": "/actions/shmcd/in/a_r"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/b",
+          "mode": "button",
+          "inputs": {
+            "click": {
+              "output": "/actions/shmcd/in/b_r"
+            }
+          }
+        }
+      ],
+      "poses": [
+        { "output": "/actions/shmcd/in/pose_l", "path": "/user/hand/left/pose/tip" },
+        { "output": "/actions/shmcd/in/pose_r", "path": "/user/hand/right/pose/tip" }
+      ],
+      "haptics": [
+        {
+          "output": "/actions/shmcd/out/haptic_l",
+          "path": "/user/hand/left/output/haptic"
+        },
+        {
+          "output": "/actions/shmcd/out/haptic_r",
+          "path": "/user/hand/right/output/haptic"
+        }
+      ]
+    }
+  }
+}

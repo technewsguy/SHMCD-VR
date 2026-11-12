@@ -1,0 +1,8 @@
+# Never publish: decompiled game code, game files, local builds
+_decomp/
+build/
+dist/
+deps/bepinex/
+_tools/testrun.ps1
+*.orig
+shots/

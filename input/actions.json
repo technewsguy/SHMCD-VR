@@ -1,0 +1,50 @@
+{
+  "default_bindings": [
+    { "controller_type": "knuckles", "binding_url": "bindings_knuckles.json" },
+    { "controller_type": "oculus_touch", "binding_url": "bindings_oculus_touch.json" },
+    { "controller_type": "vive_controller", "binding_url": "bindings_vive_controller.json" }
+  ],
+  "action_sets": [
+    { "name": "/actions/shmcd", "usage": "leftright" }
+  ],
+  "actions": [
+    { "name": "/actions/shmcd/in/stick_l", "type": "vector2" },
+    { "name": "/actions/shmcd/in/stick_r", "type": "vector2" },
+    { "name": "/actions/shmcd/in/stickclick_l", "type": "boolean" },
+    { "name": "/actions/shmcd/in/stickclick_r", "type": "boolean" },
+    { "name": "/actions/shmcd/in/trigger_l", "type": "vector1" },
+    { "name": "/actions/shmcd/in/trigger_r", "type": "vector1" },
+    { "name": "/actions/shmcd/in/a_l", "type": "boolean" },
+    { "name": "/actions/shmcd/in/a_r", "type": "boolean" },
+    { "name": "/actions/shmcd/in/b_l", "type": "boolean" },
+    { "name": "/actions/shmcd/in/b_r", "type": "boolean" },
+    { "name": "/actions/shmcd/in/grip_l", "type": "boolean" },
+    { "name": "/actions/shmcd/in/grip_r", "type": "boolean" },
+    { "name": "/actions/shmcd/in/pose_l", "type": "pose" },
+    { "name": "/actions/shmcd/in/pose_r", "type": "pose" },
+    { "name": "/actions/shmcd/out/haptic_l", "type": "vibration" },
+    { "name": "/actions/shmcd/out/haptic_r", "type": "vibration" }
+  ],
+  "localization": [
+    {
+      "language_tag": "en_US",
+      "/actions/shmcd": "SUPERHOT MIND CONTROL DELETE VR",
+      "/actions/shmcd/in/stick_l": "Move / menu navigation (left stick)",
+      "/actions/shmcd/in/stick_r": "Snap turn (right stick)",
+      "/actions/shmcd/in/stickclick_l": "Recenter (both stick clicks)",
+      "/actions/shmcd/in/stickclick_r": "Recenter (both stick clicks)",
+      "/actions/shmcd/in/trigger_l": "Hotswitch (left trigger)",
+      "/actions/shmcd/in/trigger_r": "Attack / confirm (right trigger)",
+      "/actions/shmcd/in/a_l": "Restart (left lower button)",
+      "/actions/shmcd/in/a_r": "Jump (right lower button)",
+      "/actions/shmcd/in/b_l": "Pause (left upper button)",
+      "/actions/shmcd/in/b_r": "Throw / back (right upper button)",
+      "/actions/shmcd/in/grip_l": "Grip (unused)",
+      "/actions/shmcd/in/grip_r": "Grip (optional SUPERHOT VR grab / release)",
+      "/actions/shmcd/in/pose_l": "Left hand pose",
+      "/actions/shmcd/in/pose_r": "Right hand aim pose",
+      "/actions/shmcd/out/haptic_l": "Left rumble",
+      "/actions/shmcd/out/haptic_r": "Right rumble"
+    }
+  ]
+}
