@@ -12,7 +12,7 @@ using Utilities.CameraEffects;
 
 namespace SHMCDVR
 {
-    [BepInPlugin("shmcdvr.mod", "SHMCD-VR", "0.1.0")]
+    [BepInPlugin("shmcdvr.mod", "SHMCD-VR", "0.1.1")]
     public class Plugin : BaseUnityPlugin
     {
         internal static ManualLogSource Log;

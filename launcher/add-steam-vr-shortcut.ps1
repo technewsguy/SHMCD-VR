@@ -30,6 +30,9 @@ foreach ($p in @(@('header.jpg', 'shmcdvr_header.jpg'), @('library_600x900.jpg',
     if (Test-Path "$art\$($p[0])") { Copy-Item "$art\$($p[0])" (Join-Path $ld $p[1]) -Force }
 }
 $esc = { param($s) $s.Replace('\', '\\') }
+# SteamVR's web-based screens ("Up Next") do not load local file paths: use the game's images on Steam's CDN.
+$cdn = 'https://shared.steamstatic.com/store_item_assets/steam/apps/690040'
+$imgHeader = "$cdn/header.jpg"; $imgCapsule = "$cdn/library_600x900.jpg"
 $manifest = @"
 {
   "source": "builtin",
@@ -40,8 +43,8 @@ $manifest = @"
     "working_directory": "$(& $esc $ld)",
     "arguments": "--noop",
     "is_dashboard_overlay": false,
-    "image_path": "$(& $esc (Join-Path $ld 'shmcdvr_header.jpg'))",
-    "image_path_capsule": "$(& $esc (Join-Path $ld 'shmcdvr_capsule.jpg'))",
+    "image_path": "$imgHeader",
+    "image_path_capsule": "$imgCapsule",
     "strings": { "en_us": { "name": "$name", "description": "SUPERHOT: MIND CONTROL DELETE with the SHMCD-VR mod" } }
   }]
 }

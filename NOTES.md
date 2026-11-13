@@ -333,3 +333,8 @@ Known issues:
 - Done for the user's account 2026-11-12: shortcut id 3649134931, pointing at the test copy T:\SHMCD-VR\game.
   shortcuts.vdf backup: shortcuts.vdf.shmcdvr-backup.
 
+
+- v0.1.1 (2026-11-13): user confirmed Steam entry art, dashboard closing, game + controllers. SteamVR 'Up Next' showed no art
+  with local image paths -> manifest uses Steam CDN URLs (store_item_assets/steam/apps/690040/header.jpg, library_600x900.jpg);
+  launcher now re-registers the manifest on every start. Release v0.1.1 includes steam-entry\.
+

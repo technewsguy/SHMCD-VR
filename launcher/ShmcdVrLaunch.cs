@@ -48,11 +48,9 @@ static class ShmcdVrLaunch
             {
                 try
                 {
-                    if (!OpenVR.Applications.IsApplicationInstalled(AppKey))
-                    {
-                        string manifest = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "shmcdvr.vrmanifest");
-                        Log("registering " + manifest + ": " + OpenVR.Applications.AddApplicationManifest(manifest, false));
-                    }
+                    // (Re)register every time so manifest changes (artwork, paths) reach SteamVR.
+                    string manifest = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "shmcdvr.vrmanifest");
+                    if (System.IO.File.Exists(manifest)) Log("registering " + manifest + ": " + OpenVR.Applications.AddApplicationManifest(manifest, false));
                     // SteamVR closes its dashboard when it launches an app. The entry just runs this launcher with --noop.
                     // Right after SteamVR starts it may not accept launches yet (IPCFailed): retry for up to ~15 s.
                     var e = OpenVR.Applications.LaunchApplication(AppKey);
