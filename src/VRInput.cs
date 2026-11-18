@@ -390,6 +390,7 @@ namespace SHMCDVR
 
         void Start()
         {
+            if (Plugin.VR) SteamSetup.RemoveOldLibraryEntry();
             if (!Plugin.VR || !Plugin.EnableControllers.Value) { enabled = false; return; }
             string manifest = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(typeof(Plugin).Assembly.Location), "shmcdvr_input\\actions.json");
             VRControllers.Init(System.IO.Path.GetFullPath(manifest));

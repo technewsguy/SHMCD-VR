@@ -24,25 +24,50 @@ are untested.
 
 - SUPERHOT: MIND CONTROL DELETE (Steam, Windows)
 - SteamVR and a VR headset with motion controllers
-- Python 3 (only used once by the installer, to switch VR on in the game data; https://www.python.org/downloads/)
 
 ## Install
 
-1. Download the latest `SHMCD-VR-v*.zip` from [Releases](../../releases) and unzip it anywhere.
-2. Close the game. Double-click `install.cmd` (or run `install.ps1` in PowerShell).
-   - It finds the game through Steam; otherwise run `install.ps1 -GameDir "<folder with SHMCD.exe>"`.
-   - It installs BepInEx 5.4.23.6 (x86) from its official GitHub release, copies the mod, sets
-     `vr-enabled=1` in `boot.config`, and patches `globalgamemanagers` to enable OpenVR
-     (it asks before installing the `UnityPy` Python package).
-   - Originals are kept as `*.orig`.
-3. Start SteamVR, then start the game.
+1. Download **`SHMCD-VR-Setup-v0.2.0.exe`** from [Releases](../../releases) and double-click it.
+2. It finds the game in your Steam libraries (or click Browse). Click **Install**.
+   - If Steam is open, it asks to restart Steam once. If you say no, the last step happens the next time Steam
+     restarts.
+3. Start the game from Steam as usual, on the desktop or from the SteamVR library's **VR** tab. It goes straight
+   into the game in VR.
 
-**Optional - a separate "SUPERHOT: MIND CONTROL DELETE VR" entry in Steam and SteamVR** (with the game's artwork,
-"Include in VR Library" on, plus desktop / Start menu shortcuts). It closes and restarts Steam:
-`powershell -ExecutionPolicy Bypass -File steam-entry\add-steam-vr-shortcut.ps1 -GameDir "<game folder>" -BuildDir steam-entry`
+What the installer does:
 
-**Uninstall:** run `uninstall.cmd`, or verify the game files in Steam. Back up your game folder first if you want
-to be extra careful; the installer only changes the files listed above.
+- Installs BepInEx 5.4.23.6 (x86, the mod loader) and the mod into the game folder.
+- Switches on the game's own (Unity) VR support: `vr-enabled=1` in `SHMCD_Data\boot.config` and "OpenVR" in the
+  game's list of VR devices in `SHMCD_Data\globalgamemanagers`. Only that one setting in the file is changed.
+- Changes Steam's local copy of the game's launch settings, so that the game is listed in SteamVR's VR tab and
+  Steam starts `SHMCD.exe` directly instead of the SUPERHOT Launcher window. If a Steam update resets this, the
+  mod sets it up again after Steam next closes.
+- Leaves `SHMCD-VR Uninstall.exe` in the game folder.
+
+**Upgrading from 0.1:** just run the new installer. It removes the old launcher, desktop / Start menu shortcuts and
+SteamVR entry. If you added the separate "SUPERHOT: MIND CONTROL DELETE VR" entry to Steam, remove it there
+(right-click it > Manage > Remove non-Steam game); the normal entry does the job now.
+
+**Linux (Steam + Proton):** run the installer through Proton (add it to Steam as a non-Steam game, force Proton,
+start it). It installs the mod and then lists two Steam settings for the game to make by hand: force Proton, and a
+launch option.
+
+**Uninstall:** double-click `SHMCD-VR Uninstall.exe` in the game folder. It puts every changed file back exactly as
+it was, removes BepInEx (unless other mods use it) and restores Steam's launch settings. Your saves are untouched.
+
+### With UniGetUI or Scoop
+
+SHMCD-VR is also in the [technewsguy/scoop-vr-mods](https://github.com/technewsguy/scoop-vr-mods) bucket, so
+[UniGetUI](https://github.com/marticliment/UniGetUI) or [Scoop](https://scoop.sh) can install it and keep it up to
+date:
+
+```powershell
+scoop bucket add vrmods https://github.com/technewsguy/scoop-vr-mods
+scoop install vrmods/shmcd-vr
+```
+
+It runs the same installer silently. Game in an unusual place? Set the `SHMCDVR_GAMEDIR` environment variable to
+its folder first.
 
 ## Controls (Valve Index)
 
@@ -82,12 +107,13 @@ Please open an [issue](../../issues) with:
 - `BepInEx\LogOutput.log` from the session, and an F12 screenshot if it is something you can see.
 
 Known rough spots: some melee weapons can sit oddly in the hand (`MeleeFlipNames`, `MeleeHandRoll` help), only
-some weapons have been checked, menus are on a flat panel, and the Steam "resume" overlay can appear at start.
+some weapons have been checked, and menus are on a flat panel.
 
 ## Building from source
 
 `build.ps1 -GameDir "<game folder with BepInEx installed>" [-Install]` compiles `src\*.cs` against the game's
-assemblies (C# 5 / .NET 3.5, Windows `csc`). `package.ps1` builds the release zip. See `NOTES.md` for how things
+assemblies (C# 5 / .NET 3.5, Windows `csc`) and builds the installer `SHMCD-VR-Setup.exe`. `package.ps1` builds the
+release files (the installer and a zip for Scoop). See `NOTES.md` for how things
 work and the gotchas found along the way.
 
 ## Disclaimer

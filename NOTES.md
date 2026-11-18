@@ -338,3 +338,15 @@ Known issues:
   with local image paths -> manifest uses Steam CDN URLs (store_item_assets/steam/apps/690040/header.jpg, library_600x900.jpg);
   launcher now re-registers the manifest on every start. Release v0.1.1 includes steam-entry\.
 
+
+## v0.2.0: installer exe, Steam's normal entry plays in VR (2026-11-18)
+- `installer\Setup.cs` (SHMCD-VR-Setup.exe, built by build.ps1): embeds BepInEx 5.4.23.6 x86 + payload, `/S`,
+  `/GAMEDIR=`, `/UNINSTALL`, `/VRTAG-WAIT`; log `%TEMP%\shmcdvr-setup.log`. Removes v0.1's `SHMCDVR-launcher`.
+- `installer\GgmPatch.cs`: rewrites only BuildSettings.enabledVRDevices in globalgamemanagers (format 17); later
+  objects shift by an 8-aligned amount. Setting it back to [] gives the original file byte for byte. No Python.
+- boot.config: `vr-enabled=` changed in place (uninstall restores the original bytes).
+- `installer\SteamVRTag.cs` (also compiled into the plugin): appinfo.vdf launch options for Windows get type "vr"
+  (SteamVR VR tab) and `SUPERHOTMCD.exe` -> `SHMCD.exe`. The stub otherwise opens the Electron SUPERHOT Launcher
+  when `HKCU\Software\SUPERHOT_LAUNCHER isInstalled` is set. Beta options 3/4 keep their exe.
+- Plugin `SteamSetup.cs`: re-checks at each start and starts the waiter; removes v0.1's SteamVR manifest via OpenVR.
+- User-verified: VR tab, straight into the game from the headset, controllers.

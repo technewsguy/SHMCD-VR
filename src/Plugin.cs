@@ -12,7 +12,7 @@ using Utilities.CameraEffects;
 
 namespace SHMCDVR
 {
-    [BepInPlugin("shmcdvr.mod", "SHMCD-VR", "0.1.1")]
+    [BepInPlugin("shmcdvr.mod", "SHMCD-VR", "0.2.0")]
     public class Plugin : BaseUnityPlugin
     {
         internal static ManualLogSource Log;
@@ -120,6 +120,7 @@ namespace SHMCDVR
             go.AddComponent<VRInputDriver>();
             go.AddComponent<VRHands>();
             go.AddComponent<TimeStartLog>();
+            SteamSetup.CheckSteamEntry();
             UnityEngine.SceneManagement.SceneManager.sceneLoaded += (s, m) => Log.LogInfo("[scene] loaded '" + s.name + "' (" + m + ")");
             Log.LogInfo("SHMCD-VR loaded. XR enabled=" + XRSettings.enabled + " device=" + XRSettings.loadedDeviceName + " present=" + XRDevice.isPresent);
         }
